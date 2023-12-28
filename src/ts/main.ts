@@ -10,6 +10,7 @@ const productList: Array<Product> = [];
 export const cart: Array<Product> = [];
 
 
+
 for (let i = 0; i < foundProducts.length; i++) {
   //console.log(foundProducts[i]);
   productList.push(new Product(foundProducts[i].title,foundProducts[i].category,foundProducts[i].description,foundProducts[i].price,foundProducts[i].image));
