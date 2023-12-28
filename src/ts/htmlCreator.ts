@@ -1,16 +1,7 @@
+import { cart } from "./main";
 import { Product } from "./models/Product";
 
 const container = document.getElementById("productContainer");
-
-export function buttonCreator(itemContainer: HTMLElement):HTMLElement {
-  const addToCartButton = document.createElement("button");
-  addToCartButton.innerHTML = "Add to cart";
-  addToCartButton.id = "addToCartButton";
-  itemContainer.appendChild(addToCartButton);
-  container?.appendChild(itemContainer); 
-
-  return addToCartButton;
-};
 
 export function createProductHTML(product: Product) {
   const itemContainer = document.createElement("section");
@@ -36,5 +27,18 @@ export function createProductHTML(product: Product) {
   itemContainer?.appendChild(price);
   itemContainer?.appendChild(image);
 
-  buttonCreator(itemContainer);
+  const addToCartButton = document.createElement("button");
+  addToCartButton.innerHTML = "Add to cart";
+  addToCartButton.id = "addToCartButton";
+  itemContainer.appendChild(addToCartButton);
+  container?.appendChild(itemContainer);
+
+  addToCartButton.addEventListener("click", () => {
+    //cart.splice(0,cart.length);
+    cart.push(product);
+    const storage = JSON.parse(localStorage.getItem("usercart")!);
+    cart.push(JSON.parse(localStorage.getItem("userCart")!));
+    //localStorage.clear();
+    localStorage.setItem("userCart",JSON.stringify(cart));
+  })
 }

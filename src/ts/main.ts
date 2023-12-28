@@ -1,5 +1,5 @@
 import "./../scss/style.scss";
-import { buttonCreator, createProductHTML } from "./htmlCreator";
+import { createProductHTML } from "./htmlCreator";
 import { Product } from "./models/Product";
 import { searchProducts } from "./services/service";
 
@@ -7,6 +7,8 @@ const foundProducts = await searchProducts();
 //console.log(foundProducts);
 
 const productList: Array<Product> = [];
+export const cart: Array<Product> = [];
+
 
 for (let i = 0; i < foundProducts.length; i++) {
   //console.log(foundProducts[i]);
@@ -14,10 +16,4 @@ for (let i = 0; i < foundProducts.length; i++) {
 
   createProductHTML(productList[i]);
 };
-
-
-localStorage.setItem("test",JSON.stringify(productList));
-const test2 = JSON.parse(localStorage.getItem("test")!);
-console.log(test2);
-localStorage.clear();
 console.log(productList);
