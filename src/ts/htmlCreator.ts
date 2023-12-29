@@ -1,10 +1,63 @@
+import { setUpCartDisplayer } from "./cartDisplayer";
 import { cart } from "./main";
 import { Product } from "./models/Product";
 
-
-
 const container = document.getElementById("productContainer");
-//const cartNumber = document.querySelector(".popup") as HTMLElement;
+export const cartContainer = document.querySelector(".cartItems");
+const cartNumber = document.querySelector(".popup") as HTMLElement;
+
+export function loadCart(storageArray: Array<Product>) {
+  for (let i = 0; i < storageArray.length; i++) {
+    cart.push(storageArray[i]);
+  }
+  console.log(cart);
+}
+
+export function updateCartNumber() {
+  cartNumber.innerHTML = "" + cart.length;
+}
+
+export function createCartHTML(product: Product){
+
+  const cartItemContainer = document.createElement("section");
+  cartItemContainer.className="cartItemContainer";
+  
+    
+  const title = document.createElement("h2");
+  const price = document.createElement("p");
+  const image = document.createElement("img");
+
+  title.innerHTML = product.productTitle;
+  price.innerHTML = product.productPrice.toString() + "€";
+  image.src = product.productImageURL;
+  image.className = "cartProductImage";
+
+  cartItemContainer.className = "cartItemContainer";
+
+  cartItemContainer?.appendChild(title);
+  cartItemContainer?.appendChild(price);
+  cartItemContainer?.appendChild(image);
+
+  const addButton = document.createElement("button");
+  const removeButton = document.createElement("button");
+
+  addButton.innerHTML="+";
+  removeButton.innerHTML="-";
+
+  cartItemContainer?.appendChild(addButton);
+  cartItemContainer?.appendChild(removeButton);
+
+  cartContainer?.appendChild(cartItemContainer);
+
+
+  //addButton.addEventListener("click"()=>{})
+  //removeButton.addEventListener("click"()=>{})
+
+
+}
+
+
+
 export function createProductHTML(product: Product) {
   const itemContainer = document.createElement("section");
 
@@ -35,11 +88,8 @@ export function createProductHTML(product: Product) {
   itemContainer.appendChild(addToCartButton);
   container?.appendChild(itemContainer);
 
-/*
-function updateCartNumber(){
-  cartNumber.innerHTML = ""+cart.length;
-}
-*/
+  //console.log(storageToCart);
+
   addToCartButton.addEventListener("click", () => {
     //Vi måste allra först rensa eftersom vi får dubletter annars, det snöbollar ur 2,4,8,16,32...
     /*
@@ -55,7 +105,7 @@ function updateCartNumber(){
     som användaren manuellt kan lägga till i.
     */
 
-/*
+    /*
 Här blir det konstigt om vi inte rensar våra listor!!!
 
     //Den här koden säger, hej fyll min cart array med saker från local storage. Det vi hämtade från local storage till cart är cart arrays egna array.. Paradox
@@ -70,9 +120,10 @@ Här blir det konstigt om vi inte rensar våra listor!!!
     localStorage.setItem("userCart", JSON.stringify(cart));
 */
 
-
     //Förbered cart genom att göra dens längd 0. För en människa så är det typ samma sak som att rensa den.
+
     cart.length = 0;
+
     //Hämta nyckeln "userCart", usercart är arrayen med produkter, vi behöver själva produkterna inte arrayen
     const storageToCart = JSON.parse(localStorage.getItem("userCart")!);
     //Om usercart ens finns, så loopa genom och lägg in våra produkter från arrayen i vår cart.
@@ -84,15 +135,14 @@ Här blir det konstigt om vi inte rensar våra listor!!!
     }
     //Koden som lägger in en produkt vi klickar på.
     cart.push(product);
-
+   
     //Rensa localstorage, samma anledning som med cart
     localStorage.clear();
     //Lägger in cart arrayen i localstorage. Är en string eftersom localstorage endast kan lagra strings.
     localStorage.setItem("userCart", JSON.stringify(cart));
-    
-    
-    //updateCartNumber();
+
+    updateCartNumber();
+    setUpCartDisplayer();
     //update cart funkar typ, men endast då man lägger till en produkt eftersom cart då har en siffra.
   });
-
-};
+}
