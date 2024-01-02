@@ -4,6 +4,7 @@ import { cart } from "./main";
 const cartIcon = document.querySelector(".cartIcon");
 const shoppingCart = document.getElementById("shoppingCart") as HTMLElement;
 
+
 export function setUpCartDisplayer() {
   let cartText = document.querySelector(".cartText");
   if (cart.length > 0) {

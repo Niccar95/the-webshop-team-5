@@ -38,8 +38,8 @@ h3 {
 */
 
 .navigation {
-  // position: fixed;
-  // top: 0;
+  position: fixed;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,12 +94,9 @@ h3 {
 }
 
 #productContainer{
-  // display: flex;
-  // flex-direction: column;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1em;
-  // border: solid black;
   width: 80%;
   padding: 1em;
 
@@ -116,9 +113,6 @@ h3 {
     text-align: center;
 
     .productImage {
-      // width: 200px;
-      // border: 2px solid black;
-      // padding: 1em;
       width: 90%;
       height: 250px;
       vertical-align: middle;
@@ -143,7 +137,7 @@ h3 {
 }
 
 .cartItemContainer{
-  border: 2px solid black;
+  border-bottom: solid black;
 }
 
 .display {
@@ -169,6 +163,6 @@ h3 {
 }
 
 #addToCartButton {
-  
+  cursor: pointer;
 }
 

@@ -6,6 +6,8 @@ const container = document.getElementById("productContainer");
 export const cartContainer = document.querySelector(".cartItems");
 const cartNumber = document.querySelector(".popup") as HTMLElement;
 
+const cartItems = document.getElementById("cartItems") as HTMLElement;
+
 export function loadCart(storageArray: Array<Product>) {
   for (let i = 0; i < storageArray.length; i++) {
     cart.push(storageArray[i]);
@@ -44,7 +46,15 @@ export function createCartHTML(product: Product){
 
   
   //title.innerHTML = product.productTitle + displayAmount(product.productAmount);
-  title.innerHTML = product.productTitle + " X " + product.productAmount;
+
+  const updateQuantity = () => {
+    title.innerHTML = product.productTitle + " X " + product.productAmount;
+  };
+
+  updateQuantity();
+
+
+  
   price.innerHTML = product.productPrice.toString() + "€";
   image.src = product.productImageURL;
   image.className = "cartProductImage";
@@ -99,12 +109,41 @@ addButton.addEventListener("click", ()=>{
 
     currentProduct.productAmount +=1;
 
+    updateQuantity();
+
     cart.push(currentProduct);
     localStorage.clear();
     localStorage.setItem("userCart", JSON.stringify(cart));
     //displayAmount(product.productAmount);
   }
   handleAddButtonClick(product);
+  updateCartNumber();
+})
+
+removeButton.addEventListener("click", ()=>{
+  const handleRemoveButtonClick = (currentProduct:Product)=>{
+    const indexToRemove = cart.indexOf(product);
+    //cart.splice(indexToRemove, 1);
+
+    if (currentProduct.productAmount > 0) {
+      currentProduct.productAmount -= 1;
+      updateQuantity(); 
+
+      if (currentProduct.productAmount === 0) {
+        cart.splice(indexToRemove, 1); 
+
+        if (cartItems && cartItems.parentNode) {
+          cartItems.parentNode.removeChild(cartItems);
+        } 
+      }
+      localStorage.setItem("userCart", JSON.stringify(cart));
+      updateCartNumber();
+      setUpCartDisplayer();
+    }
+   
+    //displayAmount(product.productAmount);
+  };
+  handleRemoveButtonClick(product);
 })
 }
 
@@ -142,6 +181,7 @@ export function createProductHTML(product: Product) {
   //console.log(storageToCart);
 
   addToCartButton.addEventListener("click", () => {
+
     //Vi måste allra först rensa eftersom vi får dubletter annars, det snöbollar ur 2,4,8,16,32...
     /*
     Anledningen till varför vi måste rensa allra först är för att annars kommer det snöbolla ur.
@@ -218,8 +258,9 @@ Här blir det konstigt om vi inte rensar våra listor!!!
     //Lägger in cart arrayen i localstorage. Är en string eftersom localstorage endast kan lagra strings.
     localStorage.setItem("userCart", JSON.stringify(existingCart));
 
+   
     updateCartNumber();
-    setUpCartDisplayer();
+    setUpCartDisplayer(); 
     //update cart funkar typ, men endast då man lägger till en produkt eftersom cart då har en siffra.
   });
 }
