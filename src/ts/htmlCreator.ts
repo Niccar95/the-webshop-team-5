@@ -14,8 +14,22 @@ export function loadCart(storageArray: Array<Product>) {
 }
 
 export function updateCartNumber() {
-  cartNumber.innerHTML = "" + cart.length;
+  let cartTotal:number = 0;
+  for (let i = 0; i < cart.length; i++) {
+    cartTotal = (cartTotal+cart[i].productAmount);
+  }
+  cartNumber.innerHTML = "" + cartTotal;
 }
+/*
+function displayAmount (number:number){
+  const productTitle = document.getElementById("title") as HTMLElement;
+  if(productTitle !== null){
+    const newHTML = productTitle.innerHTML;
+    newHTML + " X " + number;
+    productTitle.innerHTML = newHTML;}
+
+}
+*/
 
 export function createCartHTML(product: Product){
 
@@ -24,10 +38,13 @@ export function createCartHTML(product: Product){
   
     
   const title = document.createElement("h2");
+  title.id = "title";
   const price = document.createElement("p");
   const image = document.createElement("img");
 
-  title.innerHTML = product.productTitle;
+  
+  //title.innerHTML = product.productTitle + displayAmount(product.productAmount);
+  title.innerHTML = product.productTitle + " X " + product.productAmount;
   price.innerHTML = product.productPrice.toString() + "€";
   image.src = product.productImageURL;
   image.className = "cartProductImage";
@@ -51,12 +68,19 @@ export function createCartHTML(product: Product){
   cartContainer?.appendChild(cartItemContainer);
 
 
+  /*
   addButton.addEventListener("click",()=>{
     //skapar en ny produkt som är identisk till den vi är i.
-    createCartHTML(product);
+    const index = cart.indexOf(product);
+    cart.splice(index,1);
+    if (typeof product.updateProductAmount === 'function') {
+      product.updateProductAmount(product.productAmount);
+    }
+    //createCartHTML(product);
     //lägg till produkten i vår cart array
     cart.push(product);
     //lägg till produkt cart i localstorage
+    localStorage.clear();
     localStorage.setItem("userCart", JSON.stringify(cart));
   })
   removeButton.addEventListener("click",()=>{
@@ -66,6 +90,22 @@ export function createCartHTML(product: Product){
     setUpCartDisplayer();
     updateCartNumber();
   })
+}
+*/
+addButton.addEventListener("click", ()=>{
+  const handleAddButtonClick = (currentProduct:Product)=>{
+    const index = cart.indexOf(product);
+    cart.splice(index,1);
+
+    currentProduct.productAmount +=1;
+
+    cart.push(currentProduct);
+    localStorage.clear();
+    localStorage.setItem("userCart", JSON.stringify(cart));
+    //displayAmount(product.productAmount);
+  }
+  handleAddButtonClick(product);
+})
 }
 
 export function createProductHTML(product: Product) {
@@ -132,8 +172,16 @@ Här blir det konstigt om vi inte rensar våra listor!!!
 */
 
     //Förbered cart genom att göra dens längd 0. För en människa så är det typ samma sak som att rensa den.
+    const existingCart = JSON.parse(localStorage.getItem("userCart") || '[]');
+    //cart.length = 0;
+    const index = existingCart.findIndex((cartProduct:Product)=> cartProduct.productTitle === product.productTitle);
 
-    cart.length = 0;
+    if (index !== -1) {
+      existingCart[index].productAmount +=1;
+    }else{
+      product.productAmount = 1;
+      existingCart.push(product);
+    }
 
     //Hämta nyckeln "userCart", usercart är arrayen med produkter, vi behöver själva produkterna inte arrayen
     const storageToCart = JSON.parse(localStorage.getItem("userCart")!);
@@ -141,16 +189,34 @@ Här blir det konstigt om vi inte rensar våra listor!!!
     if (storageToCart != null) {
       for (let i = 0; i < storageToCart.length; i++) {
         //lägg till storageCart[i], alltså objektet på platsen i i storageToCart arrayen, som är det vi får från localstorage.
-        cart.push(storageToCart[i]);
+        let product:Product =storageToCart[i];
+        console.log(product.productAmount+1);
+
+        if (typeof storageToCart.setProducAmount === 'function') {
+          product.updateProductAmount(product.productAmount);
+        }
+          if (!product) {
+            cart.push(product);
+            console.log("fijahsölfkhasö");
+            localStorage.setItem("userCart", JSON.stringify(existingCart));
+          }
+
+        
+       
       }
     }
     //Koden som lägger in en produkt vi klickar på.
-    cart.push(product);
+    /*
+    product.updateProductAmount(product.productAmount);
+      existingCart.push(product);
+    */
+
+    
    
     //Rensa localstorage, samma anledning som med cart
     localStorage.clear();
     //Lägger in cart arrayen i localstorage. Är en string eftersom localstorage endast kan lagra strings.
-    localStorage.setItem("userCart", JSON.stringify(cart));
+    localStorage.setItem("userCart", JSON.stringify(existingCart));
 
     updateCartNumber();
     setUpCartDisplayer();

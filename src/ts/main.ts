@@ -19,7 +19,7 @@ for (let i = 0; i < foundProducts.length; i++) {
       foundProducts[i].category,
       foundProducts[i].description,
       foundProducts[i].price,
-      foundProducts[i].image
+      foundProducts[i].image,
     )
   );
 
