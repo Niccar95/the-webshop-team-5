@@ -41,6 +41,7 @@ export function createCartHTML(product: Product){
   const addButton = document.createElement("button");
   const removeButton = document.createElement("button");
 
+  
   addButton.innerHTML="+";
   removeButton.innerHTML="-";
 
@@ -50,13 +51,22 @@ export function createCartHTML(product: Product){
   cartContainer?.appendChild(cartItemContainer);
 
 
-  //addButton.addEventListener("click"()=>{})
-  //removeButton.addEventListener("click"()=>{})
-
-
+  addButton.addEventListener("click",()=>{
+    //skapar en ny produkt som är identisk till den vi är i.
+    createCartHTML(product);
+    //lägg till produkten i vår cart array
+    cart.push(product);
+    //lägg till produkt cart i localstorage
+    localStorage.setItem("userCart", JSON.stringify(cart));
+  })
+  removeButton.addEventListener("click",()=>{
+    const index = cart.indexOf(product);
+    cart.splice(index,1);
+    localStorage.setItem("userCart", JSON.stringify(cart));
+    setUpCartDisplayer();
+    updateCartNumber();
+  })
 }
-
-
 
 export function createProductHTML(product: Product) {
   const itemContainer = document.createElement("section");
