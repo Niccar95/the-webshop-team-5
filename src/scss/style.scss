@@ -23,6 +23,14 @@ h1 {
   line-height: 1.1;
 }
 
+h2 {
+  font-size: 1.1em;
+}
+
+h3 {
+  font-size: 0.9em;
+}
+
 /*
 #app {
 
@@ -30,25 +38,34 @@ h1 {
 */
 
 .navigation {
-  position: fixed;
-  top: 0;
+  // position: fixed;
+  // top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid black;
+  // border: solid black;
   width: 100%;
   height: 100px;
   z-index: 100;
+  background-color:rgba(230, 230, 250, 0.753);
 
   .navList {
     display: flex;
     justify-content: space-evenly;
     width: 80%;
-    border: solid black;
+    // border: solid black;
     list-style: none;
-  
+
+    li {
+      cursor: pointer;
+    }
     
   }
+}
+
+
+.navList li:hover {
+  font-weight: bold;
 }
 
 .cartContainer {
@@ -58,6 +75,7 @@ h1 {
   width: 50px;
   height: 50px;
   position: relative;
+  cursor: pointer;
 }
 
 .popup {
@@ -76,24 +94,38 @@ h1 {
 }
 
 #productContainer{
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1em;
-  border: solid black;
-  width: 70%;
+  // border: solid black;
+  width: 80%;
   padding: 1em;
 
   .itemContainer{
     padding: 1em;
-    border: solid black;
+    border: 1px solid black;
+    border-radius: 8px;
     display:flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     gap: 0.5em;
+    box-shadow: 0px 0px 10px rgb(194, 192, 192);
+    text-align: center;
 
     .productImage {
-      width: 200px;
-      border: 2px solid black;
+      // width: 200px;
+      // border: 2px solid black;
+      // padding: 1em;
+      width: 90%;
+      height: 250px;
+      vertical-align: middle;
+      border: 1px solid grey;
       padding: 1em;
+      border-radius: 8px;
+      
     }
 
     button {
@@ -132,5 +164,9 @@ h1 {
  right: -500%;
  transition: right 0.3s ease-in-out;
 
+}
+
+#addToCartButton {
+  
 }
 

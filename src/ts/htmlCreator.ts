@@ -63,24 +63,25 @@ export function createProductHTML(product: Product) {
 
   const title = document.createElement("h2");
   const category = document.createElement("h3");
-  const description = document.createElement("p");
+  // const description = document.createElement("p");
   const price = document.createElement("p");
   const image = document.createElement("img");
 
   title.innerHTML = product.productTitle;
   category.innerHTML = product.productCategory;
-  description.innerHTML = product.productDescription;
+  // description.innerHTML = product.productDescription;
   price.innerHTML = product.productPrice.toString() + "€";
   image.src = product.productImageURL;
   image.className = "productImage";
 
   itemContainer.className = "itemContainer";
 
+  itemContainer?.appendChild(image);
   itemContainer?.appendChild(title);
   itemContainer?.appendChild(category);
-  itemContainer?.appendChild(description);
+  // itemContainer?.appendChild(description);
   itemContainer?.appendChild(price);
-  itemContainer?.appendChild(image);
+  
 
   const addToCartButton = document.createElement("button");
   addToCartButton.innerHTML = "Add to cart";
