@@ -166,3 +166,24 @@ h3 {
   cursor: pointer;
 }
 
+
+.infoContainerHidden {
+  display: none;
+  width: 200px;
+  height: 200px;
+  border: solid black;
+  background-color: white;
+  z-index: 1000;
+}
+
+
+.infoContainerDisplay {
+  width: 200px;
+  height: 200px;
+  border: solid black;
+  background-color: white;
+  z-index: 1000;
+}
+
+
+

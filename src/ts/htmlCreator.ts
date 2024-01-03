@@ -17,8 +17,9 @@ export function loadCart(storageArray: Array<Product>) {
 
 export function updateCartNumber() {
   let cartTotal:number = 0;
+
   for (let i = 0; i < cart.length; i++) {
-    cartTotal = (cartTotal+cart[i].productAmount);
+    cartTotal = (cartTotal + cart[i].productAmount);
   }
   cartNumber.innerHTML = "" + cartTotal;
 }
@@ -43,6 +44,7 @@ export function createCartHTML(product: Product){
   title.id = "title";
   const price = document.createElement("p");
   const image = document.createElement("img");
+
 
   
   //title.innerHTML = product.productTitle + displayAmount(product.productAmount);
@@ -157,6 +159,13 @@ export function createProductHTML(product: Product) {
   const price = document.createElement("p");
   const image = document.createElement("img");
 
+  image.addEventListener("click", () => {
+   const productInfoContainer = document.createElement("section");
+   productInfoContainer.className = "infoContainer";
+   image.appendChild(productInfoContainer);
+   console.log("helloo");
+  });
+
   title.innerHTML = product.productTitle;
   category.innerHTML = product.productCategory;
   // description.innerHTML = product.productDescription;
@@ -193,7 +202,7 @@ export function createProductHTML(product: Product) {
     }else{
       product.productAmount = 1;
       existingCart.push(product);
-       
+      cart.push(product);
 
     }   
 
