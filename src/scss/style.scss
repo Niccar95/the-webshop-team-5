@@ -198,11 +198,11 @@ h3 {
   right: 0;
   width: 500px;
   height: 500px;
-  border: solid grey;
   background-color: white;
   z-index: 900;
   overflow-y: scroll;
   transition: right 0.3s ease-in-out;
+  box-shadow: 0px 0px 10px rgb(194, 192, 192);
 }
 
 
@@ -221,12 +221,22 @@ h3 {
 }
 
 .hidden {
- position: absolute;
- top: 100;
- right: -500%;
- transition: right 0.3s ease-in-out;
-
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 100px;
+  right: -500%;
+  width: 500px;
+  height: 500px;
+  border: solid grey;
+  background-color: white;
+  z-index: 900;
+  overflow-y: scroll;
+  transition: right 0.3s ease-in-out;
+  box-shadow: 0px 0px 10px rgb(194, 192, 192);
 }
+
 
 #addToCartButton {
   cursor: pointer;
