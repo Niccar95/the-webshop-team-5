@@ -59,5 +59,6 @@ export function displayCart() {
       shoppingCart?.classList.add("hidden");
       shoppingCart?.classList.remove("add");
     }
+
   });
 }
