@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Seymour+One&display=swap');
+
 *{
   margin: 0;
+  //padding: 
 }
 
 :root {
@@ -9,12 +12,10 @@
 }
 
 body {
-  margin: 0;  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow-x: hidden;
 }
 
@@ -37,36 +38,74 @@ h3 {
 }
 */
 
-.navigation {
+.landingPage {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to right, rgba(208, 220, 251, 0.6),  rgba(125, 130, 191, 0.6), rgba(220, 193, 245, 0.6)), url("/src/img/shopping.jpg");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3em;
+
+  .navigation {
   position: fixed;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: solid black;
   width: 100%;
   height: 100px;
-  z-index: 100;
-  background-color:rgba(230, 230, 250, 0.753);
+  z-index: 2000;
+  background-color:rgb(230, 230, 250); 
+
 
   .navList {
     display: flex;
     justify-content: space-evenly;
     width: 80%;
-    // border: solid black;
     list-style: none;
-
+    padding: 0;
     li {
       cursor: pointer;
+      color: rgb(56, 56, 56);
     }
     
   }
+
+  .navList li:hover {
+    font-weight: bold;
+  }
+  
 }
 
-
-.navList li:hover {
-  font-weight: bold;
+.webshopTitle {
+  font-size: 6em;
+  color: white;
 }
+
+.shopNowButton {
+  cursor: pointer;
+  padding: 12px 45px;
+  border: solid white;
+  color: white;
+  background-color: rgba(125, 130, 191, 0.5);
+
+}
+
+.shopNowButton:hover {
+  background-color: transparent;
+}
+
+.shopNowButton:active {
+  background-color: rgba(125, 130, 191, 0.9);
+}
+}
+
 
 .cartContainer {
   display: flex;
@@ -86,8 +125,8 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid red;
-  background-color: red;
+  background-color: crimson;
+  padding: 2px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -102,7 +141,8 @@ h3 {
 
   .itemContainer{
     padding: 1em;
-    border-radius: 8px;
+    //border: 1px solid black;
+    //border-radius: 8px;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
@@ -115,7 +155,7 @@ h3 {
       width: 85%;
       height: 250px;
       vertical-align: middle;
-      
+      //border: 1px solid grey;
       padding: 1em;
       border-radius: 8px;
       object-fit: contain;
@@ -128,9 +168,19 @@ h3 {
 
 
     button {
-      padding: 8px 15px;
-      
-      width: 100px;
+      cursor: pointer;
+      padding: 12px 45px;
+      border: solid white;
+      color: white;
+      background-color: rgb(125, 130, 191);
+    }
+
+    button:hover {
+      background-color: rgba(125, 130, 191, 0.5);
+    }
+    
+    button:active {
+      background-color: rgba(125, 130, 191, 0.8);
     }
   }
 }
@@ -146,25 +196,52 @@ h3 {
 
 .display {
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   top: 100px;
   right: 0;
   width: 500px;
   height: 500px;
-  border: solid black;
-  border-radius: 8px;
   background-color: white;
   z-index: 900;
   overflow-y: scroll;
   transition: right 0.3s ease-in-out;
+  box-shadow: 0px 0px 10px rgb(194, 192, 192);
+}
+
+
+.cartItems {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cartItemContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .hidden {
- position: absolute;
- top: 100;
- right: -500%;
- transition: right 0.3s ease-in-out;
-
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 100px;
+  right: -500%;
+  width: 500px;
+  height: 500px;
+  border: solid grey;
+  background-color: white;
+  z-index: 900;
+  overflow-y: scroll;
+  transition: right 0.3s ease-in-out;
+  box-shadow: 0px 0px 10px rgb(194, 192, 192);
 }
+
 
 #addToCartButton {
   cursor: pointer;
