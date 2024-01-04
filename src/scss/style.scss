@@ -102,26 +102,30 @@ h3 {
 
   .itemContainer{
     padding: 1em;
-    border: 1px solid black;
     border-radius: 8px;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     gap: 0.5em;
-    box-shadow: 0px 0px 10px rgb(194, 192, 192);
+    box-shadow: 0px 0px 8px rgb(194, 192, 192);
     text-align: center;
 
     .productImage {
-      width: 90%;
+      width: 85%;
       height: 250px;
       vertical-align: middle;
-      border: 1px solid grey;
+      
       padding: 1em;
       border-radius: 8px;
       object-fit: contain;
-      
+      cursor: pointer;
     }
+
+    .productImage:hover {
+      border: 1px solid grey;
+    }
+
 
     button {
       padding: 8px 15px;
@@ -167,24 +171,41 @@ h3 {
 }
 
 
-.infoContainerHidden {
+// .infoContainerHidden {
+//   display: none;
+//   width: 200px;
+//   height: 200px;
+//   border: solid black;
+//   background-color: white;
+//   z-index: 1000;
+// }
+
+
+// .infoContainerDisplay {
+//   display: block;
+//   width: 200px;
+//   height: 200px;
+//   border: solid black;
+//   background-color: white;
+//   z-index: 1000;
+// }
+
+#modalContainer {
   display: none;
-  width: 200px;
-  height: 200px;
-  border: solid black;
-  background-color: white;
-  z-index: 1000;
+  position:fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-
-.infoContainerDisplay {
-  display: block;
-  width: 200px;
-  height: 200px;
-  border: solid black;
-  background-color: white;
-  z-index: 1000;
+.modalContent {
+  background-color: whitesmoke;
+  margin: 20% auto;
+  padding: 20px;
+  width: 70%;
 }
-
-
 
