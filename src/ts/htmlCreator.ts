@@ -45,17 +45,17 @@ export function createCartHTML(product: Product) {
   title.id = "title";
   const price = document.createElement("p");
   const image = document.createElement("img");
-  const infoContainer = document.getElementById("infoContainer");
-
-
+  // const infoContainer = document.getElementById("infoContainer") as HTMLElement;
   
-  image.addEventListener("click", () => {
 
-    infoContainer?.classList.add("infoContainerDisplay");
-    infoContainer?.classList.remove("infoContainerHidden");
+  // image.addEventListener("click", () => {
+
+
+  //   infoContainer?.classList.add("infoContainerDisplay");
+  //   infoContainer?.classList.remove("infoContainerHidden");
   
  
-  });
+  // });
   //title.innerHTML = product.productTitle + displayAmount(product.productAmount);
 
   const updateQuantity = () => {
@@ -161,7 +161,7 @@ export function createProductHTML(product: Product) {
   const category = document.createElement("h3");
   // const description = document.createElement("p");
   const price = document.createElement("p");
-  const image = document.createElement("img");
+  const image = document.createElement("img");  
 
   image.addEventListener("click", () => {
     const productInfoContainer = document.createElement("section");
@@ -184,6 +184,25 @@ export function createProductHTML(product: Product) {
   itemContainer?.appendChild(category);
   // itemContainer?.appendChild(description);
   itemContainer?.appendChild(price);
+
+
+   //SKAPA MODAL
+   const modalContainer = document.getElementById("modalContainer") as HTMLElement;
+   const modalCloseBtn = document.getElementById ("modalCloseBtn") as HTMLElement;
+  
+   image.addEventListener("click", () => {
+    modalContainer.style.display = "block";  
+  });
+  
+   modalCloseBtn.addEventListener("click", () => {
+     modalContainer.style.display = "none"; 
+   });
+
+   window.addEventListener("click", (e) => {
+    if(e.target == modalContainer){
+      modalContainer.style.display = "none"; 
+    }
+  });
 
   const addToCartButton = document.createElement("button");
   addToCartButton.innerHTML = "Add to cart";
