@@ -17,7 +17,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow-x: hidden;
-}
+
 
 h1 {
   font-size: 3.2em;
@@ -31,12 +31,6 @@ h2 {
 h3 {
   font-size: 0.9em;
 }
-
-/*
-#app {
-
-}
-*/
 
 .landingPage {
   width: 100%;
@@ -141,8 +135,6 @@ h3 {
 
   .itemContainer{
     padding: 1em;
-    //border: 1px solid black;
-    //border-radius: 8px;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
@@ -155,7 +147,6 @@ h3 {
       width: 85%;
       height: 250px;
       vertical-align: middle;
-      //border: 1px solid grey;
       padding: 1em;
       border-radius: 8px;
       object-fit: contain;
@@ -247,26 +238,6 @@ h3 {
   cursor: pointer;
 }
 
-
-// .infoContainerHidden {
-//   display: none;
-//   width: 200px;
-//   height: 200px;
-//   border: solid black;
-//   background-color: white;
-//   z-index: 1000;
-// }
-
-
-// .infoContainerDisplay {
-//   display: block;
-//   width: 200px;
-//   height: 200px;
-//   border: solid black;
-//   background-color: white;
-//   z-index: 1000;
-// }
-
 #modalContainer {
   display: none;
   position:fixed;
@@ -286,3 +257,4 @@ h3 {
   width: 70%;
 }
 
+}
