@@ -1,12 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Seymour+One&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
 *{
   margin: 0;
-  //padding: 
+  box-sizing: border-box;
+  line-height: 2em;
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Merriweather', serif;
   line-height: 1.5;
   font-weight: 400;
   scroll-behavior: smooth;
@@ -59,7 +62,6 @@ h3 {
   z-index: 2000;
   background-color:rgb(230, 230, 250); 
 
-
   .navList {
     display: flex;
     justify-content: space-evenly;
@@ -71,7 +73,6 @@ h3 {
       cursor: pointer;
       color: rgb(56, 56, 56);
     }
-    
   }
 
   .navList li:hover {
@@ -82,7 +83,6 @@ h3 {
     text-decoration: none;
     color: black;
   }
-
 }
 
 .webshopTitle {
@@ -107,7 +107,6 @@ h3 {
   background-color: rgba(125, 130, 191, 0.9);
 }
 }
-
 
 .cartContainer {
   display: flex;
@@ -141,7 +140,7 @@ h3 {
   width: 80%;
   padding: 1em;
 
-  .itemContainer{
+  .itemContainer {
     padding: 1em;
     display:flex;
     flex-direction: column;
@@ -152,6 +151,7 @@ h3 {
     text-align: center;
 
     .productImage {
+      box-sizing: border-box;
       width: 85%;
       height: 250px;
       vertical-align: middle;
@@ -159,14 +159,14 @@ h3 {
       border-radius: 8px;
       object-fit: contain;
       cursor: pointer;
+      transition: all ease-in-out 0.1s;
     }
 
     .productImage:hover {
-      border: 1px solid grey;
+      box-shadow: inset 0px 0px 5px rgb(194, 192, 192);
     }
 
-
-    button {
+    #addToCartButton {
       cursor: pointer;
       padding: 12px 45px;
       border: solid white;
@@ -174,23 +174,14 @@ h3 {
       background-color: rgb(125, 130, 191);
     }
 
-    button:hover {
+    #addToCartButton:hover {
       background-color: rgba(125, 130, 191, 0.5);
     }
     
-    button:active {
+    #addToCartButton:active {
       background-color: rgba(125, 130, 191, 0.8);
     }
   }
-}
-
-
-.cartProductImage{
-  max-width: 100px;
-}
-
-.cartItemContainer{
-  border-bottom: solid black;
 }
 
 .display {
@@ -198,31 +189,80 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1em;
+  padding: 1em;
   top: 100px;
   right: 0;
   width: 500px;
   height: 500px;
   background-color: white;
   z-index: 900;
-  overflow-y: scroll;
+  overflow-y: auto;
   transition: right 0.3s ease-in-out;
   box-shadow: 0px 0px 10px rgb(194, 192, 192);
+  
+  .cartItems {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  .cartItemContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    padding: 1em;
+    border-bottom: 1px solid grey;
+  
+  .cartProductImage{
+    max-width: 100px;
+  }
+
+  .cartButtonContainer {
+    display: flex;
+    gap: 1em;
+    
+    .cartButton {
+      cursor: pointer;
+      padding: 8px 20px;
+      border: none;
+      color: white;
+      background-color: rgb(125, 130, 191);
+    }
+  
+    .cartButton:hover {
+      background-color: rgba(125, 130, 191, 0.5);
+    }
+    
+  .cartButton:active {
+      background-color: rgba(125, 130, 191, 0.8);
+    
+  }
+}
+}
+}
+
+.toCheckoutButton {
+    cursor: pointer;
+    padding: 12px 35px;
+    border: none;
+    color: white;
+    background-color: rgb(210, 135, 133);
+  }
+
+  .toCheckoutButton:hover {
+    background-color: rgba(210, 135, 133, 0.5);
+  }
+  
+.toCheckoutButton:active {
+  background-color: rgba(210, 135, 133, 0.8);
+  }
+
 }
 
 
-.cartItems {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.cartItemContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 .hidden {
   position: fixed;
@@ -237,32 +277,66 @@ h3 {
   background-color: white;
   z-index: 900;
   overflow-y: scroll;
-  transition: right 0.3s ease-in-out;
+  transition: right 0.5s ease-in-out;
   box-shadow: 0px 0px 10px rgb(194, 192, 192);
+  
 }
 
 
-#addToCartButton {
-  cursor: pointer;
-}
 
 #modalContainer {
   display: none;
   position:fixed;
-  z-index: 1;
+  z-index: 2000;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
-}
+  overflow-y: hidden;
+  
+  .modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 50%;
 
-.modalContent {
-  background-color: white;
-  margin: 20% auto;
-  padding: 20px;
-  width: 70%;
-}
+    #modalContentItems {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      align-items: center;
+      width: 100%;
+      box-shadow: 0px 0px 10px rgb(194, 192, 192);
+      padding: 1em;
 
+      .modalImage {
+      width: 150px;
+    }
+  }
+
+  #modalCloseButton {
+    cursor: pointer;
+    padding: 12px 45px;
+    border: solid white;
+    color: white;
+    background-color: rgb(125, 130, 191);
+  }
+
+  #modalCloseButton:hover {
+    background-color: rgba(125, 130, 191, 0.5);
+  }
+  
+  #modalCloseButton:active {
+    background-color: rgba(125, 130, 191, 0.8);
+  }
 }
+}
+} 
+
