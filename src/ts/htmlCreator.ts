@@ -110,19 +110,10 @@ export function createCartHTML(product: Product) {
 }
 */
   addButton.addEventListener("click", () => {
-    const handleAddButtonClick = (currentProduct: Product) => {
-      const index = cart.indexOf(product);
-      cart.splice(index, 1);
-
-      currentProduct.productAmount += 1;
-
-      updateQuantity();
-
-      cart.push(currentProduct);
-      localStorage.setItem("userCart", JSON.stringify(cart));
-      //displayAmount(product.productAmount);
-    };
-    handleAddButtonClick(product);
+    const index = cart.indexOf(product);
+    cart[index].productAmount++;
+    localStorage.setItem("userCart", JSON.stringify(cart));
+    updateQuantity();
     updateCartNumber();
   });
 

@@ -23,6 +23,11 @@ payButton?.addEventListener("click", ()=>{
     alert("Thank you for your purchase! Your total was " + totalPrice + "€");
 })
 
+
+function calculatePrice(product:Product){
+  return totalPrice += product.productPrice*product.productAmount;
+}
+
 for (let i = 0; i < cart.length; i++) {
     
     function createCheckout(){    
@@ -40,7 +45,7 @@ for (let i = 0; i < cart.length; i++) {
     checkoutItems.appendChild(title);
     checkoutItems.appendChild(image);
     checkoutItems.appendChild(price);
-    totalPrice += cart[i].productPrice*cart[i].productAmount;
+    calculatePrice(cart[i]);
 
 
     const addButton = document.createElement("button");
@@ -66,24 +71,13 @@ for (let i = 0; i < cart.length; i++) {
       updateQuantity();
 
       addButton.addEventListener("click", () => {
-
-        checkoutItems.innerHTML="";
-        
-        const handleAddButtonClick = (currentProduct: Product) => {
-          const index = cart.indexOf(cart[i]);
-          cart.splice(index, 1);
-            console.log(cart[i]);
-          currentProduct.productAmount += 1;
-    
-          updateQuantity();
-    
-          cart.push(currentProduct);
-          localStorage.setItem("userCart", JSON.stringify(cart));
-
-                    //displayAmount(product.productAmount);
-        };
-        handleAddButtonClick(cart[i]);
-        createCheckout();
+        const index = cart.indexOf(cart[i]);
+        cart[index].productAmount++;
+        localStorage.setItem("userCart", JSON.stringify(cart));
+        updateQuantity();
+        calculatePrice(cart[i]);
+        updateTotalPrice();
+        console.log(totalPrice);
       });
     
       removeButton.addEventListener("click", () => {
@@ -94,6 +88,8 @@ for (let i = 0; i < cart.length; i++) {
           if (currentProduct.productAmount > 0) {
             currentProduct.productAmount -= 1;
             updateQuantity();
+            calculatePrice(cart[i]);
+            updateTotalPrice();
      
             if (currentProduct.productAmount === 0) {
               cart.splice(indexToRemove, 1);
