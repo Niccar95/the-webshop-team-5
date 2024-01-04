@@ -4,6 +4,18 @@ import { createProductHTML, loadCart, updateCartNumber } from "./htmlCreator";
 import { Product } from "./models/Product";
 import { searchProducts } from "./services/service";
 
+
+const navigation = document.querySelector(".navigation") as HTMLHtmlElement;
+
+const navigationHeight = navigation.offsetHeight;
+
+document.documentElement.style.setProperty (
+  "--scroll-padding", 
+  navigationHeight + "px"
+);
+
+
+
 let storageToCart = JSON.parse(localStorage.getItem("userCart")!);
 const foundProducts = await searchProducts();
 //console.log(foundProducts);

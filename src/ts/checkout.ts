@@ -16,7 +16,16 @@ function updateTotalPrice(){
     totalPriceP.innerHTML=totalPrice.toString() + "€";
 }
 
+const payButton = document.querySelector(".cartPayment");
+
+payButton?.addEventListener("click", ()=>{
+    updateTotalPrice();
+    alert("Thank you for your purchase! Your total was " + totalPrice + "€");
+})
+
 for (let i = 0; i < cart.length; i++) {
+    
+    function createCheckout(){    
     const title = document.createElement("p");
     const image = document.createElement("img");
     image.className = "productImage";
@@ -46,6 +55,7 @@ for (let i = 0; i < cart.length; i++) {
     checkoutContainer?.appendChild(checkoutItems);
 
 
+    
     updateTotalPrice();
 
 
@@ -53,44 +63,52 @@ for (let i = 0; i < cart.length; i++) {
         title.innerHTML = cart[i].productTitle + " X " + cart[i].productAmount;
       };
 
-    addButton.addEventListener("click", () => {
+      updateQuantity();
+
+      addButton.addEventListener("click", () => {
+
+        checkoutItems.innerHTML="";
+        
         const handleAddButtonClick = (currentProduct: Product) => {
           const index = cart.indexOf(cart[i]);
           cart.splice(index, 1);
-    
+            console.log(cart[i]);
           currentProduct.productAmount += 1;
     
           updateQuantity();
     
           cart.push(currentProduct);
-          localStorage.clear();
           localStorage.setItem("userCart", JSON.stringify(cart));
-          //displayAmount(product.productAmount);
+
+                    //displayAmount(product.productAmount);
         };
         handleAddButtonClick(cart[i]);
+        createCheckout();
       });
     
       removeButton.addEventListener("click", () => {
         const handleRemoveButtonClick = (currentProduct: Product) => {
           const indexToRemove = cart.indexOf(cart[i]);
           //cart.splice(indexToRemove, 1);
-    
+     
           if (currentProduct.productAmount > 0) {
             currentProduct.productAmount -= 1;
             updateQuantity();
-    
+     
             if (currentProduct.productAmount === 0) {
               cart.splice(indexToRemove, 1);
-    
+     
               if (checkoutItems != null) {
                 checkoutItems.remove();
               }
             }
             localStorage.setItem("userCart", JSON.stringify(cart));
           }
-    
+     
           //displayAmount(product.productAmount);
         };
         handleRemoveButtonClick(cart[i]);
       });
     }
+    createCheckout();
+}

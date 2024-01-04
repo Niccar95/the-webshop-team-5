@@ -119,7 +119,6 @@ export function createCartHTML(product: Product) {
       updateQuantity();
 
       cart.push(currentProduct);
-      localStorage.clear();
       localStorage.setItem("userCart", JSON.stringify(cart));
       //displayAmount(product.productAmount);
     };
@@ -189,12 +188,29 @@ export function createProductHTML(product: Product) {
    //SKAPA MODAL
    const modalContainer = document.getElementById("modalContainer") as HTMLElement;
    const modalCloseBtn = document.getElementById ("modalCloseBtn") as HTMLElement;
-  
+   const modalContentItems = document.getElementById("modalContentItems") as HTMLElement;
+   const modalImage = document.createElement("img");
+   const modalTitle = document.createElement("h2");
+   const modalCategory = document.createElement("h3");
+   const modalDescription = document.createElement("p");
+
    image.addEventListener("click", () => {
+
+    modalContentItems.innerHTML = "";
     modalContainer.style.display = "block";  
+    modalImage.src = product.productImageURL;
+    modalCategory.innerHTML = product.productCategory;
+    modalDescription.innerHTML = product.productDescription;
+    modalTitle.innerHTML = product.productTitle;
+
+    modalContentItems.appendChild(modalImage);
+    modalContentItems.appendChild(modalTitle);
+    modalContentItems.appendChild(modalCategory);
+    modalContentItems.appendChild(modalDescription);
+
   });
   
-   modalCloseBtn.addEventListener("click", () => {
+   modalCloseBtn?.addEventListener("click", () => {
      modalContainer.style.display = "none"; 
    });
 

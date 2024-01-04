@@ -7,18 +7,16 @@
     <title>Sell it or buy it?</title>
   </head>
   <body>
-    <header class="landingPage">
+    <header id="home" class="landingPage">
       
       <nav class="navigation">
 
       <ul class="navList">
-        <li>Home</li>
-        <li>Shop</li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#productContainer">Shop</a></li>
         <li>Contact</li>
         <li>About</li>
       </ul>
-
-    
 
     <div class="cartContainer">
 
@@ -31,7 +29,7 @@
     </nav>
     
     <h1 class="webshopTitle">The Webshop</h1>
-    <button class="shopNowButton">Shop Now</button>
+    <a href="#productContainer"><button class="shopNowButton">Shop Now</button></a>
 </header>
     
 
@@ -41,12 +39,11 @@
     <section id="productContainer">
       <!--TS genererar massa coola saker-->
 
-
-      <!-- <section id="infoContainer" class="infoContainerHidden" class="infoContainerDisplay"> -->
       <section id="modalContainer">
         <section id="modalContent" class="modalContent">
+          <section id="modalContentItems"></section>
           <button id="modalCloseBtn">Close</button>
-        </section>
+        </section>  
       </section>
 
       </section>
