@@ -88,12 +88,10 @@ for (let i = 0; i < cart.length; i++) {
           if (currentProduct.productAmount > 0) {
             currentProduct.productAmount -= 1;
             updateQuantity();
-            calculatePrice(cart[i]);
-            updateTotalPrice();
+
      
             if (currentProduct.productAmount === 0) {
               cart.splice(indexToRemove, 1);
-     
               if (checkoutItems != null) {
                 checkoutItems.remove();
               }
