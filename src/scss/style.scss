@@ -1,15 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
 
-
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
-
-*{
+* {
   margin: 0;
   box-sizing: border-box;
   line-height: 2em;
 }
 
 :root {
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
   line-height: 1.5;
   font-weight: 400;
   scroll-behavior: smooth;
@@ -23,320 +21,311 @@ body {
   justify-content: center;
   overflow-x: hidden;
 
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+  h2 {
+    font-size: 1.1em;
+  }
 
-h2 {
-  font-size: 1.1em;
-}
+  h3 {
+    font-size: 0.9em;
+  }
 
-h3 {
-  font-size: 0.9em;
-}
+  .landingPage {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(208, 220, 251, 0.6), rgba(125, 130, 191, 0.6), rgba(220, 193, 245, 0.6)),
+      url("/src/img/shopping.jpg");
 
-.landingPage {
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(to right, rgba(208, 220, 251, 0.6),  rgba(125, 130, 191, 0.6), rgba(220, 193, 245, 0.6)), url("/src/img/shopping.jpg");
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3em;
-
-  .navigation {
-    position: fixed;
-    top: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100px;
-    z-index: 2000;
-    background-color:rgb(230, 230, 250); 
+    gap: 3em;
 
-  .navList {
-    display: flex;
-    justify-content: space-evenly;
-    width: 80%;
-    list-style: none;
-    padding: 0;
+    .navigation {
+      position: fixed;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100px;
+      z-index: 2000;
+      background-color: rgb(230, 230, 250);
 
-    li {
-      cursor: pointer;
-      color: rgb(56, 56, 56);
-    }
-  }
+      .navList {
+        display: flex;
+        justify-content: space-evenly;
+        width: 80%;
+        list-style: none;
+        padding: 0;
 
-  .navList li:hover {
-    font-weight: bold;
-  }
-  
-  a {
-    text-decoration: none;
-    color: black;
-  }
-}
+        li {
+          cursor: pointer;
+          color: rgb(56, 56, 56);
+        }
+      }
 
-.webshopTitle {
-  font-size: 6em;
-  color: white;
-}
+      .navList li:hover {
+        font-weight: bold;
+      }
 
-.shopNowButton {
-  cursor: pointer;
-  padding: 12px 45px;
-  border: solid white;
-  color: white;
-  background-color: rgba(125, 130, 191, 0.5);
-
-}
-
-.shopNowButton:hover {
-  background-color: transparent;
-}
-
-.shopNowButton:active {
-  background-color: rgba(125, 130, 191, 0.9);
-}
-}
-
-.cartContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  position: relative;
-  cursor: pointer;
-}
-
-.popup {
-  top: 0;
-  right: 0;
-  position: absolute;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: crimson;
-  padding: 2px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-}
-
-#productContainer{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1em;
-  width: 80%;
-  padding: 1em;
-
-  .itemContainer {
-    padding: 1em;
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5em;
-    box-shadow: 0px 0px 8px rgb(194, 192, 192);
-    text-align: center;
-
-    .productImage {
-      box-sizing: border-box;
-      width: 85%;
-      height: 250px;
-      vertical-align: middle;
-      padding: 1em;
-      border-radius: 8px;
-      object-fit: contain;
-      cursor: pointer;
-      transition: all ease-in-out 0.1s;
+      a {
+        text-decoration: none;
+        color: black;
+      }
     }
 
-    .productImage:hover {
-      box-shadow: inset 0px 0px 5px rgb(194, 192, 192);
+    .webshopTitle {
+      font-size: 6em;
+      color: white;
     }
 
-    #addToCartButton {
+    .shopNowButton {
       cursor: pointer;
       padding: 12px 45px;
       border: solid white;
       color: white;
-      background-color: rgb(125, 130, 191);
-    }
-
-    #addToCartButton:hover {
       background-color: rgba(125, 130, 191, 0.5);
     }
-    
-    #addToCartButton:active {
-      background-color: rgba(125, 130, 191, 0.8);
+
+    .shopNowButton:hover {
+      background-color: transparent;
+    }
+
+    .shopNowButton:active {
+      background-color: rgba(125, 130, 191, 0.9);
     }
   }
-}
 
-.display {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1em;
-  padding: 1em;
-  top: 100px;
-  right: 0;
-  width: 500px;
-  height: 500px;
-  background-color: white;
-  z-index: 900;
-  overflow-y: auto;
-  transition: right 0.3s ease-in-out;
-  box-shadow: 0px 0px 10px rgb(194, 192, 192);
-  
-  .cartItems {
-    width: 80%;
+  .cartContainer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-  .cartItemContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 0.5em;
-    padding: 1em;
-    border-bottom: 1px solid grey;
-  
-  .cartProductImage{
-    max-width: 100px;
-  }
-
-  .cartButtonContainer {
-    display: flex;
-    gap: 1em;
-    
-    .cartButton {
-      cursor: pointer;
-      padding: 8px 20px;
-      border: none;
-      color: white;
-      background-color: rgb(125, 130, 191);
-    }
-  
-    .cartButton:hover {
-      background-color: rgba(125, 130, 191, 0.5);
-    }
-    
-  .cartButton:active {
-      background-color: rgba(125, 130, 191, 0.8);
-    
-  }
-}
-}
-}
-
-.toCheckoutButton {
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    position: relative;
     cursor: pointer;
-    padding: 12px 35px;
-    border: none;
-    color: white;
-    background-color: rgb(210, 135, 133);
   }
 
-  .toCheckoutButton:hover {
-    background-color: rgba(210, 135, 133, 0.5);
-  }
-  
-.toCheckoutButton:active {
-  background-color: rgba(210, 135, 133, 0.8);
-  }
+  .popup {
+    top: 0;
+    right: 0;
+    position: absolute;
 
-}
-
-
-
-.hidden {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  top: 100px;
-  right: -500%;
-  width: 500px;
-  height: 500px;
-  border: solid grey;
-  background-color: white;
-  z-index: 900;
-  overflow-y: scroll;
-  transition: right 0.5s ease-in-out;
-  box-shadow: 0px 0px 10px rgb(194, 192, 192);
-  
-}
-
-
-
-#modalContainer {
-  display: none;
-  position:fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  overflow-y: hidden;
-  
-  .modalContent {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1em;
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    width: 50%;
+    background-color: crimson;
+    padding: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
 
-    #modalContentItems {
+  #productContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+    width: 80%;
+    padding: 1em;
+
+    .itemContainer {
+      padding: 1em;
       display: flex;
       flex-direction: column;
-      gap: 1em;
+      justify-content: space-between;
       align-items: center;
-      width: 100%;
-      box-shadow: 0px 0px 10px rgb(194, 192, 192);
-      padding: 1em;
+      gap: 0.5em;
+      box-shadow: 0px 0px 8px rgb(194, 192, 192);
+      text-align: center;
 
-      .modalImage {
-      width: 150px;
+      .productImage {
+        box-sizing: border-box;
+        width: 85%;
+        height: 250px;
+        vertical-align: middle;
+        padding: 1em;
+        border-radius: 8px;
+        object-fit: contain;
+        cursor: pointer;
+        transition: all ease-in-out 0.1s;
+      }
+
+      .productImage:hover {
+        box-shadow: inset 0px 0px 5px rgb(194, 192, 192);
+      }
+
+      #addToCartButton {
+        cursor: pointer;
+        padding: 12px 45px;
+        border: solid white;
+        color: white;
+        background-color: rgb(125, 130, 191);
+      }
+
+      #addToCartButton:hover {
+        background-color: rgba(125, 130, 191, 0.5);
+      }
+
+      #addToCartButton:active {
+        background-color: rgba(125, 130, 191, 0.8);
+      }
     }
   }
 
-  #modalCloseButton {
-    cursor: pointer;
-    padding: 12px 45px;
-    border: solid white;
-    color: white;
-    background-color: rgb(125, 130, 191);
+  .display {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    top: 100px;
+    right: 0;
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    z-index: 900;
+    overflow-y: auto;
+    transition: right 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgb(194, 192, 192);
+
+    .cartItems {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .cartItemContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5em;
+        padding: 1em;
+        border-bottom: 1px solid grey;
+
+        .cartProductImage {
+          max-width: 100px;
+        }
+
+        .cartButtonContainer {
+          display: flex;
+          gap: 1em;
+
+          .cartButton {
+            cursor: pointer;
+            padding: 8px 20px;
+            border: none;
+            color: white;
+            background-color: rgb(125, 130, 191);
+          }
+
+          .cartButton:hover {
+            background-color: rgba(125, 130, 191, 0.5);
+          }
+
+          .cartButton:active {
+            background-color: rgba(125, 130, 191, 0.8);
+          }
+        }
+      }
+    }
+
+    .toCheckoutButton {
+      cursor: pointer;
+      padding: 12px 35px;
+      border: none;
+      color: white;
+      background-color: rgb(210, 135, 133);
+    }
+
+    .toCheckoutButton:hover {
+      background-color: rgba(210, 135, 133, 0.5);
+    }
+
+    .toCheckoutButton:active {
+      background-color: rgba(210, 135, 133, 0.8);
+    }
   }
 
-  #modalCloseButton:hover {
-    background-color: rgba(125, 130, 191, 0.5);
+  .hidden {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 100px;
+    right: -500%;
+    width: 500px;
+    height: 500px;
+    border: solid grey;
+    background-color: white;
+    z-index: 900;
+    overflow-y: scroll;
+    transition: right 0.5s ease-in-out;
+    box-shadow: 0px 0px 10px rgb(194, 192, 192);
   }
-  
-  #modalCloseButton:active {
-    background-color: rgba(125, 130, 191, 0.8);
-  }
-}
-}
-} 
 
+  #modalContainer {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: hidden;
+
+    .modalContent {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1em;
+      background-color: white;
+      margin: 10% auto;
+      padding: 20px;
+      width: 50%;
+
+      #modalContentItems {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        align-items: center;
+        width: 100%;
+        box-shadow: 0px 0px 10px rgb(194, 192, 192);
+        padding: 1em;
+
+        .modalImage {
+          width: 150px;
+        }
+      }
+
+      #modalCloseButton {
+        cursor: pointer;
+        padding: 12px 45px;
+        border: solid white;
+        color: white;
+        background-color: rgb(125, 130, 191);
+      }
+
+      #modalCloseButton:hover {
+        background-color: rgba(125, 130, 191, 0.5);
+      }
+
+      #modalCloseButton:active {
+        background-color: rgba(125, 130, 191, 0.8);
+      }
+    }
+  }
+}

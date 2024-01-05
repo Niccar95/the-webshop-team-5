@@ -1,6 +1,5 @@
 import "./../scss/checkout.scss";
 import { cart } from "./main";
-//import { Product } from "./models/Product";
 
 let checkoutContainer = document.querySelector(".checkoutContainer") as HTMLElement;
 const totalPriceP = document.querySelector(".totalPrice") as HTMLElement;
@@ -16,8 +15,6 @@ function calculateTotalPrice(): number {
   return total;
 }
 
-
-
 function updateTotalPrice() {
   const price = calculateTotalPrice();
   totalPriceP.innerHTML = "Total Price: " + price.toFixed(2) + "€";
@@ -31,7 +28,7 @@ payButton?.addEventListener("click", () => {
   alert("Thank you for your purchase! Your total was " + totalPrice.toFixed(2) + "€");
 })
 
-function clearCart(){
+function clearCart() {
   while (checkoutItems.lastChild) {
     checkoutItems.replaceChildren();
 
@@ -48,8 +45,6 @@ function renderHTML() {
         image.className = "productImage";
         const price = document.createElement("p");
 
-        //vi ska också kunna se antal varor i korgen också!!!
-
         title.innerHTML = cart[i].productTitle + " X " + cart[i].productAmount;
         image.src = cart[i].productImageURL;
         price.innerHTML = cart[i].productPrice.toString() + "€";
@@ -57,7 +52,6 @@ function renderHTML() {
         checkoutItems.appendChild(title);
         checkoutItems.appendChild(image);
         checkoutItems.appendChild(price);
-        //calculatePrice(cart[i]);
 
 
         const addButton = document.createElement("button");
@@ -103,7 +97,7 @@ function renderHTML() {
             cart.splice(i, 1);
             localStorage.setItem("userCart", JSON.stringify(cart));
           }
-          
+
           renderHTML();
           updateTotalPrice();
         });

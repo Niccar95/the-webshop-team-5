@@ -25,16 +25,6 @@ export function updateCartNumber() {
   }
 
 }
-/*
-function displayAmount (number:number){
-  const productTitle = document.getElementById("title") as HTMLElement;
-  if(productTitle !== null){
-    const newHTML = productTitle.innerHTML;
-    newHTML + " X " + number;
-    productTitle.innerHTML = newHTML;}
-
-}
-*/
 
 export function createCartHTML(product: Product) {
   const cartItemContainer = document.createElement("section");
@@ -44,18 +34,6 @@ export function createCartHTML(product: Product) {
   title.id = "title";
   const price = document.createElement("p");
   const image = document.createElement("img");
-  // const infoContainer = document.getElementById("infoContainer") as HTMLElement;
-  
-
-  // image.addEventListener("click", () => {
-
-
-  //   infoContainer?.classList.add("infoContainerDisplay");
-  //   infoContainer?.classList.remove("infoContainerHidden");
-  
- 
-  // });
-  //title.innerHTML = product.productTitle + displayAmount(product.productAmount);
 
   const updateQuantity = () => {
     title.innerHTML = product.productTitle + " X " + product.productAmount;
@@ -81,41 +59,18 @@ export function createCartHTML(product: Product) {
   const cartButtonContainer = document.createElement("section");
 
   cartButtonContainer.className = "cartButtonContainer";
-  
+
   addButton.innerHTML = "+";
   removeButton.innerHTML = "-";
 
-  
+
   cartItemContainer?.appendChild(cartButtonContainer);
   cartButtonContainer?.appendChild(addButton);
   cartButtonContainer?.appendChild(removeButton);
 
   cartContainer?.appendChild(cartItemContainer);
 
-  /*
-  addButton.addEventListener("click",()=>{
-    //skapar en ny produkt som är identisk till den vi är i.
-    const index = cart.indexOf(product);
-    cart.splice(index,1);
-    if (typeof product.updateProductAmount === 'function') {
-      product.updateProductAmount(product.productAmount);
-    }
-    //createCartHTML(product);
-    //lägg till produkten i vår cart array
-    cart.push(product);
-    //lägg till produkt cart i localstorage
-    localStorage.clear();
-    localStorage.setItem("userCart", JSON.stringify(cart));
-  })
-  removeButton.addEventListener("click",()=>{
-    const index = cart.indexOf(product);
-    cart.splice(index,1);
-    localStorage.setItem("userCart", JSON.stringify(cart));
-    setUpCartDisplayer();
-    updateCartNumber();
-  })
-}
-*/
+
   addButton.addEventListener("click", () => {
     const index = cart.indexOf(product);
     cart[index].productAmount++;
@@ -127,7 +82,6 @@ export function createCartHTML(product: Product) {
   removeButton.addEventListener("click", () => {
     const handleRemoveButtonClick = (currentProduct: Product) => {
       const indexToRemove = cart.indexOf(product);
-      //cart.splice(indexToRemove, 1);
 
       if (currentProduct.productAmount > 0) {
         currentProduct.productAmount -= 1;
@@ -144,8 +98,6 @@ export function createCartHTML(product: Product) {
         updateCartNumber();
         setUpCartDisplayer();
       }
-
-      //displayAmount(product.productAmount);
     };
     handleRemoveButtonClick(product);
   });
@@ -156,9 +108,8 @@ export function createProductHTML(product: Product) {
 
   const title = document.createElement("h3");
   const category = document.createElement("p");
-  // const description = document.createElement("p");
   const price = document.createElement("p");
-  const image = document.createElement("img");  
+  const image = document.createElement("img");
 
   image.addEventListener("click", () => {
     const productInfoContainer = document.createElement("section");
@@ -168,7 +119,6 @@ export function createProductHTML(product: Product) {
 
   title.innerHTML = product.productTitle;
   category.innerHTML = product.productCategory;
-  // description.innerHTML = product.productDescription;
   price.innerHTML = product.productPrice.toString() + "€";
   image.src = product.productImageURL;
   image.className = "productImage";
@@ -178,49 +128,47 @@ export function createProductHTML(product: Product) {
   itemContainer?.appendChild(image);
   itemContainer?.appendChild(title);
   itemContainer?.appendChild(category);
-  // itemContainer?.appendChild(description);
   itemContainer?.appendChild(price);
 
 
-   //SKAPA MODAL
-   const modalContainer = document.getElementById("modalContainer") as HTMLElement;
-   const modalCloseButton = document.getElementById ("modalCloseButton") as HTMLElement;
-   const modalContentItems = document.getElementById("modalContentItems") as HTMLElement;
-   const modalImage = document.createElement("img");
-   const modalTitle = document.createElement("h2");
-   const modalCategory = document.createElement("h3");
-   const modalDescription = document.createElement("p");
+  const modalContainer = document.getElementById("modalContainer") as HTMLElement;
+  const modalCloseButton = document.getElementById("modalCloseButton") as HTMLElement;
+  const modalContentItems = document.getElementById("modalContentItems") as HTMLElement;
+  const modalImage = document.createElement("img");
+  const modalTitle = document.createElement("h2");
+  const modalCategory = document.createElement("h3");
+  const modalDescription = document.createElement("p");
 
-   modalImage.className = "modalImage";
-   modalTitle.className = "modalTitle";
-   modalCategory.className = "modalCategory";
-   modalDescription.className = "modalDescription";
+  modalImage.className = "modalImage";
+  modalTitle.className = "modalTitle";
+  modalCategory.className = "modalCategory";
+  modalDescription.className = "modalDescription";
 
-   image.addEventListener("click", () => {
+  image.addEventListener("click", () => {
 
     modalContentItems.innerHTML = "";
-    modalContainer.style.display = "block";  
+    modalContainer.style.display = "block";
 
-    modalImage.src = product.productImageURL;    
+    modalImage.src = product.productImageURL;
     modalCategory.innerHTML = product.productCategory;
     modalDescription.innerHTML = product.productDescription;
     modalTitle.innerHTML = product.productTitle;
 
-    
+
     modalContentItems.appendChild(modalImage);
     modalContentItems.appendChild(modalTitle);
     modalContentItems.appendChild(modalCategory);
     modalContentItems.appendChild(modalDescription);
 
   });
-  
-   modalCloseButton?.addEventListener("click", () => {
-     modalContainer.style.display = "none"; 
-   });
 
-   window.addEventListener("click", (e) => {
-    if(e.target == modalContainer){
-      modalContainer.style.display = "none"; 
+  modalCloseButton?.addEventListener("click", () => {
+    modalContainer.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target == modalContainer) {
+      modalContainer.style.display = "none";
     }
   });
 
