@@ -1,30 +1,32 @@
 import "./../scss/checkout.scss";
 import { cart } from "./main";
-import { Product } from "./models/Product";
-
-let totalPrice: number = 0;
+//import { Product } from "./models/Product";
 
 let checkoutContainer = document.querySelector(".checkoutContainer") as HTMLElement;
 const totalPriceP = document.querySelector(".totalPrice") as HTMLElement;
 const checkoutItems = document.querySelector(".checkoutItems") as HTMLElement;
 
-function calculatePrice(product: Product) {
-  const price = totalPrice += product.productPrice * product.productAmount;
-  totalPrice = price;
+function calculateTotalPrice(): number {
+  let total = 0;
+
+  for (const product of cart) {
+    total += product.productPrice * product.productAmount;
+  }
+
+  return total;
 }
 
+
+
 function updateTotalPrice() {
-  let price = totalPrice;
- 
-  if (checkoutItems.children.length==0) {
-    price = 0;
-  }
-  totalPriceP.innerHTML = "Total Price: " + price.toFixed(2).toString() + "€";
+  const price = calculateTotalPrice();
+  totalPriceP.innerHTML = "Total Price: " + price.toFixed(2) + "€";
 }
 
 const payButton = document.querySelector(".cartPayment");
 
 payButton?.addEventListener("click", () => {
+  const totalPrice = calculateTotalPrice();
   updateTotalPrice();
   alert("Thank you for your purchase! Your total was " + totalPrice.toFixed(2) + "€");
 })
@@ -55,7 +57,7 @@ function renderHTML() {
         checkoutItems.appendChild(title);
         checkoutItems.appendChild(image);
         checkoutItems.appendChild(price);
-        calculatePrice(cart[i]);
+        //calculatePrice(cart[i]);
 
 
         const addButton = document.createElement("button");
@@ -90,7 +92,6 @@ function renderHTML() {
           cart[index].productAmount++;
           localStorage.setItem("userCart", JSON.stringify(cart));
           updateQuantity();
-          calculatePrice(cart[i]);
           updateTotalPrice();
         });
 
@@ -104,9 +105,10 @@ function renderHTML() {
           }
           
           renderHTML();
+          updateTotalPrice();
         });
       }
-
+      updateTotalPrice();
     }
     createCheckout();
   }
