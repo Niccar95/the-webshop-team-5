@@ -10,7 +10,7 @@ const checkoutItems = document.querySelector(".checkoutItems") as HTMLElement;
 
 function calculatePrice(product: Product) {
   const price = totalPrice += product.productPrice * product.productAmount;
-  return price.toFixed(2);
+  totalPrice = price;
 }
 
 function updateTotalPrice() {
@@ -32,11 +32,11 @@ payButton?.addEventListener("click", () => {
 function clearCart(){
   while (checkoutItems.lastChild) {
     checkoutItems.replaceChildren();
-    updateTotalPrice();
+
   }
 }
 
-function test() {
+function renderHTML() {
   clearCart();
   for (let i = 0; i < cart.length; i++) {
     function createCheckout() {
@@ -102,8 +102,8 @@ function test() {
             cart.splice(i, 1);
             localStorage.setItem("userCart", JSON.stringify(cart));
           }
-
-          test();
+          
+          renderHTML();
         });
       }
 
@@ -112,4 +112,4 @@ function test() {
   }
 
 }
-test();
+renderHTML();
