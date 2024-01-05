@@ -35,12 +35,26 @@ body {
       justify-content: space-evenly;
       width: 80%;
       list-style: none;
-  
+      padding: 0;
+      
       li {
         cursor: pointer;
+        color: rgb(56, 56, 56);
+ 
       }
       
-      .navList li:hover {
+      li:hover {
+        font-weight: bold;
+      }
+      
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:hover {
+        text-decoration: none;
+        color: black;
         font-weight: bold;
       }
     }
