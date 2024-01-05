@@ -13,7 +13,7 @@ const totalPriceP = document.querySelector(".totalPrice") as HTMLElement;
 const checkoutItems = document.querySelector(".checkoutItems") as HTMLElement;
 
 function updateTotalPrice(){
-    totalPriceP.innerHTML=totalPrice.toString() + "€";
+    totalPriceP.innerHTML= "Total Price: " + totalPrice.toString() + "€";
 }
 
 const payButton = document.querySelector(".cartPayment");
@@ -31,7 +31,7 @@ function calculatePrice(product:Product){
 for (let i = 0; i < cart.length; i++) {
     
     function createCheckout(){    
-    const title = document.createElement("p");
+    const title = document.createElement("h4");
     const image = document.createElement("img");
     image.className = "productImage";
     const price = document.createElement("p");
@@ -50,16 +50,21 @@ for (let i = 0; i < cart.length; i++) {
 
     const addButton = document.createElement("button");
     const removeButton = document.createElement("button");
+    const checkoutButtonContainer = document.createElement("section");
+
+    addButton.className = "checkoutButton";
+    removeButton.className = "checkoutButton";
+    checkoutButtonContainer.className = "checkoutButtonContainer";
+
   
     addButton.innerHTML = "+";
     removeButton.innerHTML = "-";
-  
-    checkoutItems?.appendChild(addButton);
-    checkoutItems?.appendChild(removeButton);
+
+    checkoutItems?.appendChild(checkoutButtonContainer);
+    checkoutButtonContainer?.appendChild(addButton);
+    checkoutButtonContainer?.appendChild(removeButton);
 
     checkoutContainer?.appendChild(checkoutItems);
-
-
     
     updateTotalPrice();
 

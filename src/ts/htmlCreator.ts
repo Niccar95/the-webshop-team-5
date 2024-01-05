@@ -71,17 +71,25 @@ export function createCartHTML(product: Product) {
   cartItemContainer.className = "cartItemContainer";
 
   cartItemContainer?.appendChild(title);
-  cartItemContainer?.appendChild(price);
   cartItemContainer?.appendChild(image);
+  cartItemContainer?.appendChild(price);
 
   const addButton = document.createElement("button");
   const removeButton = document.createElement("button");
+  addButton.className = "cartButton";
+  removeButton.className = "cartButton";
 
+  const cartButtonContainer = document.createElement("section");
+
+  cartButtonContainer.className = "cartButtonContainer";
+  
   addButton.innerHTML = "+";
   removeButton.innerHTML = "-";
 
-  cartItemContainer?.appendChild(addButton);
-  cartItemContainer?.appendChild(removeButton);
+  
+  cartItemContainer?.appendChild(cartButtonContainer);
+  cartButtonContainer?.appendChild(addButton);
+  cartButtonContainer?.appendChild(removeButton);
 
   cartContainer?.appendChild(cartItemContainer);
 
@@ -147,8 +155,8 @@ export function createCartHTML(product: Product) {
 export function createProductHTML(product: Product) {
   const itemContainer = document.createElement("section");
 
-  const title = document.createElement("h2");
-  const category = document.createElement("h3");
+  const title = document.createElement("h3");
+  const category = document.createElement("p");
   // const description = document.createElement("p");
   const price = document.createElement("p");
   const image = document.createElement("img");  
@@ -178,22 +186,29 @@ export function createProductHTML(product: Product) {
 
    //SKAPA MODAL
    const modalContainer = document.getElementById("modalContainer") as HTMLElement;
-   const modalCloseBtn = document.getElementById ("modalCloseBtn") as HTMLElement;
+   const modalCloseButton = document.getElementById ("modalCloseButton") as HTMLElement;
    const modalContentItems = document.getElementById("modalContentItems") as HTMLElement;
    const modalImage = document.createElement("img");
    const modalTitle = document.createElement("h2");
    const modalCategory = document.createElement("h3");
    const modalDescription = document.createElement("p");
 
+   modalImage.className = "modalImage";
+   modalTitle.className = "modalTitle";
+   modalCategory.className = "modalCategory";
+   modalDescription.className = "modalDescription";
+
    image.addEventListener("click", () => {
 
     modalContentItems.innerHTML = "";
     modalContainer.style.display = "block";  
-    modalImage.src = product.productImageURL;
+
+    modalImage.src = product.productImageURL;    
     modalCategory.innerHTML = product.productCategory;
     modalDescription.innerHTML = product.productDescription;
     modalTitle.innerHTML = product.productTitle;
 
+    
     modalContentItems.appendChild(modalImage);
     modalContentItems.appendChild(modalTitle);
     modalContentItems.appendChild(modalCategory);
@@ -201,7 +216,7 @@ export function createProductHTML(product: Product) {
 
   });
   
-   modalCloseBtn?.addEventListener("click", () => {
+   modalCloseButton?.addEventListener("click", () => {
      modalContainer.style.display = "none"; 
    });
 
