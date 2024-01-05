@@ -12,7 +12,6 @@ export function loadCart(storageArray: Array<Product>) {
   for (let i = 0; i < storageArray.length; i++) {
     cart.push(storageArray[i]);
   }
-  console.log(cart);
 }
 
 export function updateCartNumber() {
@@ -165,7 +164,6 @@ export function createProductHTML(product: Product) {
     const productInfoContainer = document.createElement("section");
     productInfoContainer.className = "infoContainer";
     image.appendChild(productInfoContainer);
-    console.log("helloo");
   });
 
   title.innerHTML = product.productTitle;

@@ -8,16 +8,12 @@ const shoppingCart = document.getElementById("shoppingCart") as HTMLElement;
 export function setUpCartDisplayer() {
   let cartText = document.querySelector(".cartText");
   if (cart.length > 0) {
-    console.log("Cart har produkter i sig");
     if (cartText != null) {
       cartText.innerHTML = "";
     }
     if (cartContainer?.hasChildNodes) {
-      console.log("HALLÅ!");
       if (cartContainer != undefined) {
-        //cartContainer.innerHTML="";
         while (cartContainer.lastChild) {
-          console.log("borta :)");
           cartContainer.removeChild(cartContainer.lastChild);
         }
       }
@@ -28,13 +24,9 @@ export function setUpCartDisplayer() {
     }
   }
   if (cart.length <= 0) {
-    console.log("Cart är tom");
 
     if (cartContainer?.hasChildNodes) {
-      console.log("HALLÅ!");
-      //cartContainer.innerHTML="";
       while (cartContainer.lastChild) {
-        console.log("borta :)");
         cartContainer.removeChild(cartContainer.lastChild);
       }
       if (cartText != null) {
