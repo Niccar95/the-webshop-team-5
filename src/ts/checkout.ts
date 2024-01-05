@@ -12,21 +12,24 @@ const checkoutContainer = document.querySelector(".checkoutContainer") as HTMLEl
 const totalPriceP = document.querySelector(".totalPrice") as HTMLElement;
 const checkoutItems = document.querySelector(".checkoutItems") as HTMLElement;
 
+function calculatePrice(product:Product){
+  const price = totalPrice += product.productPrice*product.productAmount;
+  return price.toFixed(2);
+}
+
 function updateTotalPrice(){
-    totalPriceP.innerHTML= "Total Price: " + totalPrice.toString() + "€";
+    totalPriceP.innerHTML= "Total Price: " + totalPrice.toFixed(2).toString() + "€";
 }
 
 const payButton = document.querySelector(".cartPayment");
 
 payButton?.addEventListener("click", ()=>{
     updateTotalPrice();
-    alert("Thank you for your purchase! Your total was " + totalPrice + "€");
+    alert("Thank you for your purchase! Your total was " + totalPrice.toFixed(2) + "€");
 })
 
 
-function calculatePrice(product:Product){
-  return totalPrice += product.productPrice*product.productAmount;
-}
+
 
 for (let i = 0; i < cart.length; i++) {
     
@@ -85,7 +88,23 @@ for (let i = 0; i < cart.length; i++) {
             updateTotalPrice();
             console.log(totalPrice);
           });
-        
+
+          removeButton.addEventListener("click", ()=>{
+            const index = cart.indexOf(cart[i]);
+            cart[index].productAmount--;
+            localStorage.setItem("userCart", JSON.stringify(cart));
+            checkoutContainer.innerHTML="";
+            createCheckout();
+            updateQuantity();
+            if(cart[i].productAmount<=0){
+            cart.splice(i,1);
+            localStorage.setItem("userCart", JSON.stringify(cart));
+            checkoutContainer.innerHTML="";
+            createCheckout();
+            }
+          });
+
+        /*
           removeButton.addEventListener("click", () => {
             const handleRemoveButtonClick = () => {
               const index = cart.indexOf(cart[i]);
@@ -95,11 +114,12 @@ for (let i = 0; i < cart.length; i++) {
                 localStorage.setItem("userCart", JSON.stringify(cart));
                 if (cart[index].productAmount === 0) {
                     cart.splice(index, i);
-
+                    localStorage.setItem("userCart", JSON.stringify(cart));
                     //checkoutItems.remove();
                     checkoutContainer.replaceChildren();
+
                     createCheckout();
-                    localStorage.setItem("userCart", JSON.stringify(cart));
+
                 }
                
               }
@@ -108,6 +128,7 @@ for (let i = 0; i < cart.length; i++) {
             };
             handleRemoveButtonClick();
           });
+          */
       }
    
     }
