@@ -284,7 +284,7 @@ body {
     width: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    overflow-y: hidden;
+    overflow-y: auto;
 
     .modalContent {
       display: flex;
@@ -293,7 +293,8 @@ body {
       justify-content: center;
       gap: 1em;
       background-color: white;
-      margin: 10% auto;
+      margin: 20% auto;
+
       padding: 20px;
       width: 50%;
 
