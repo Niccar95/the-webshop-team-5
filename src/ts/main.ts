@@ -4,17 +4,14 @@ import { createProductHTML, loadCart, updateCartNumber } from "./htmlCreator";
 import { Product } from "./models/Product";
 import { searchProducts } from "./services/service";
 
-
 const navigation = document.querySelector(".navigation") as HTMLHtmlElement;
 
 const navigationHeight = navigation.offsetHeight;
 
-document.documentElement.style.setProperty (
-  "--scroll-padding", 
+document.documentElement.style.setProperty(
+  "--scroll-padding",
   navigationHeight + "px"
 );
-
-
 
 let storageToCart = JSON.parse(localStorage.getItem("userCart")!);
 const foundProducts = await searchProducts();
@@ -29,7 +26,7 @@ for (let i = 0; i < foundProducts.length; i++) {
       foundProducts[i].category,
       foundProducts[i].description,
       foundProducts[i].price,
-      foundProducts[i].image,
+      foundProducts[i].image
     )
   );
 
@@ -41,6 +38,11 @@ if (storageToCart != null) {
 }
 updateCartNumber();
 
-
 setUpCartDisplayer();
 displayCart();
+
+const toCheckoutButton = document.querySelector(".toCheckoutButton");
+
+toCheckoutButton?.addEventListener("click", () => {
+  window.location.href = "./checkout.html";
+});
