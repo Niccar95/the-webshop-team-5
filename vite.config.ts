@@ -12,10 +12,7 @@ export default {
   build: {
     target: "esnext", // Add the target configuration here
     rollupOptions: {
-      input: {
-        main: "index.html",
-        projects: "checkout.html",
-      },
+      input: ["index.html", "checkout.html"],
     },
   },
 };
